@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html lang="es">
+<head>
+	<title>¡Welcome!</title>
+	<!-- css / fonts-->
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="common/css/normalize.css"/>
+	<link rel="stylesheet" type="text/css" href="common/css/bootstrap.css"/>
+	<link rel="stylesheet" type="text/css" href="common/css/font-awesome.css"/>
+	<link rel="stylesheet" type="text/css" href="common/css/social-buttons.css"/>
+	<link rel="stylesheet" type="text/css" href="common-new/css/main.css"/>
+	<!--SEO / Responsive-->
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+</head>
+<body id="login" class="clearfix">
+	<div class="content">
+	<!--logo-->
+	<div class="logo-panel">
+	<img src="common/img/logo.png">
+	</div>
+	<!--Login-->
+		<div class="login-panel col-md-offset-1 col-sm-offset-2 col-xs-offset-1">
+			<div class="col-md-3 col-sm-6 col-xs-10">
+				<!--User-->
+				<label>User:</label>
+				<input type="email" class="form-control" placeholder="mail@domain.com" name="user" required/>
+				<div class="divide-15"></div>
+			<!--Password-->
+				<label>Password:</label>
+				<input type="password" class="form-control" placeholder="******" name="password" required/>
+			<!--Submit-->
+				<div class="divide-15"></div>
+				<center><button class="btn btn-lg btn-success" type="submit" name="Login">Login</button>
+				<br>
+				<label>Login with <em><a href="{{ data.fb_url }}">Facebook</a></em></label><br>
+				<label>Don't have an account?, register <em><a href="/register">here</a></em></label></center>
+			</div>
+		</div><!--End login panel-->
+	</div><!--End Content-->
+	<div class="divide-100"></div>
+	<center>
+		<footer>
+			<h4>2015 NASA International App Challenge - all right reserved</h4>
+			<ul class="list-inline">
+				<li>About Us</li>
+				<li>Facebook</li>
+				<li>Twitter</li>
+				<li>GitHub</li>
+				<li>Terms</li>
+			</ul>
+		</footer>
+	</center>
+
+
+
+	<script src="common/js/jquery.js"></script>
+	<script src="common/js/bootstrap.js"></script>
+</body>
+</html>

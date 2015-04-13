@@ -1,0 +1,154 @@
+<!DOCTYPE HTML>
+<html lang="es">
+    <head>	
+        <title>Crop Alerts</title>	
+        <!-- css / fonts-->	
+        <meta charset="UTF-8">	
+        <link rel="stylesheet" type="text/css" href="../common/css/bootstrap.css"/>	
+        <link rel="stylesheet" type="text/css" href="../common/css/font-awesome.css"/>	
+        <link rel="stylesheet" type="text/css" href="../common/css/normalize.css"/>	
+        <link rel="stylesheet" type="text/css" href="../common/css/main.css"/>
+        <link rel="stylesheet" type="text/css" href="../common/css/nuevos.css"/>
+        
+        <style type="text/css">
+            html { height: 100% }
+            body { height: 100%; margin: 0; padding: 0 }
+            #map_canvas { height: 100% }
+        </style>
+        
+        <!--SEO / Responsive-->	
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">	
+        <link rel="shortcut icon" href="../common/img/favicon.ico"/>
+    </head>
+    <body>	
+        <!-- Navbar-->
+        <nav class="navbar navbar-default navbar-fixed-top">
+          <div class="container">
+            <div class="divide-10"></div>
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="#">Crop Alert</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+              <ul class="nav navbar-nav navbar-right visible-xs hidden-lg hidden-md nav_mobile">
+                <li><a href="../newcrop">New crop</a></li>
+                <li><a href="/newalert">Crop alert!</a></li>
+                <li><a href="../statistics/">Statistics</a></li>
+                <li><a href="#">Log out</a></li>
+              </ul>
+              <ul class="nav navbar-nav navbar-right text-center hidden-xs">
+                <li><a id="crop" data-toggle="modal" data-target="#new_crop">New crop</a></li>
+                <li><a id="alert" data-toggle="modal" data-target="#new_alert">Crop alert!</a></li>
+                <li><a id="alert" href="../statistics/">Statistics</a></li>
+                <li><a href="logout">Log out</a></li>
+              </ul>
+            </div><!--/.nav-collapse -->
+          </div>
+        </nav>	
+        <!-- /navbar -->
+
+        <!-- Inicio parte mapa -->    
+        <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBYuhiS0SauIzg3yLxlsIlF4knSwrIW_cU&sensor=true"> </script>
+        <div id="map_canvas" style="width:100%; height:100%"></div>
+
+        <!--Fin parte mapa-->
+        
+
+        <!-- New crop-->
+            <div class="modal fade" role="dialog" aria-labelledby="gridSystemModalLabel" aria-hidden="true" id="new_crop">
+                <form method="post" enctype="multipart/form-data" action="/map/index.php">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <h4 class="modal-title" id="gridSystemModalLabel">Register new crop</h4>
+                    </div>
+                    <div class="modal-body">
+                      <div class="container-fluid">
+                        <div class="form-group">
+                          <label>Crop name:</label><input type="text" class="form-control" id="new_crop_name" name="new_crop_name">
+                        </div>
+                        <div class="form-group">
+                          <label>Size: (m<sup>2</sup>)</label><input type="text" class="form-control" id="new_crop_size" name="new_crop_size">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      <button type="submit" class="btn btn-success" id="save_new_crop" name="save_new_crop">Save changes</button>
+                    </div>
+                  </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+                </form>
+              </div><!-- /.modal -->
+        <!-- End Crop-->
+
+        <!-- New alert-->
+            <div class="modal fade" role="dialog" aria-labelledby="gridSystemModalLabel" aria-hidden="true" id="new_alert">
+                <form method="post" enctype="multipart/form-data" action="/map/index.php">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <h4 class="modal-title" id="gridSystemModalLabel">Register new alert!</h4>
+                    </div>
+                    <div class="modal-body">
+                      <div class="container-fluid">
+                            <div class="form-group">
+                              <label>Select a crop:</label>
+                              <select id="my_crops" name="my_crops" class="form-control">
+                                  {{data.mycrops|raw}}
+                              </select>
+                          </div>
+                          <div class="form-group">
+                              <label>Type of disease:</label>
+                              <select id="crop_type" name="crop_type" class="form-control">
+                                  <option value="0">Insects</option>
+                                  <option value="1">Virus</option>
+                                  <option value="2">Another plant</option>
+                              </select>
+                          </div>
+                          <div class="form-group">
+                              <label>Description:</label>
+                              <textarea class="form-control" name="new_alert_desc"></textarea>
+                          </div>
+                          <div class="col-md-12 col-lg-12 col-sm-12  text-center">
+                              <div class="col-md-6">
+                                <label>Latitude:</label><input type="text" name="alert_lat" id="alert_lat" class="form-control col-md-3 col-lg-3 col-sm-3" disabled>
+                                <input type="hidden" id="alert_lat2" name="alert_lat2">  
+                              </div>
+                              <div class="col-md-6">
+                                <label>Longitude:</label><input type="text" name="alert_lon" id="alert_lon" class="form-control col-md-3 col-lg-3 col-sm-3" disabled>
+                                <input type="hidden" id="alert_lon2" name="alert_lon2">  
+                              </div>
+                          </div>
+                          <div class="divide-10"></div>
+                          <div class="form-group">
+                              <label>Picture:</label>
+                              <input type="file" class="form-control" name="new_alert_picture">
+                          </div>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      <button type="submit" class="btn btn-success" id="save_new_alert" name="save_new_alert">Save changes</button>
+                    </div>
+                  </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+                </form>
+              </div><!-- /.modal -->
+        <!-- End alert-->
+
+        <script src="../common/js/jquery.js"></script>
+        <script src="../common/js/bootstrap.js"></script>
+        <script src="../project_js/markerclusterer_compiled.js"></script>
+        <script src="../project_js/easymaps.dev.js"></script>
+        <script src="../project_js/map_funcs2.js"></script>
+
+    </body>
+</html>

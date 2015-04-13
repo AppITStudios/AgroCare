@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html lang="es">
+    <head>	
+        <title>Register</title>	
+        <!-- css / fonts-->	
+        <meta charset="UTF-8">	
+        <link rel="stylesheet" type="text/css" href="../common/css/bootstrap.css"/>	
+        <link rel="stylesheet" type="text/css" href="../common/css/font-awesome.css"/>	
+        <link rel="stylesheet" type="text/css" href="../common/css/normalize.css"/>	
+        <link rel="stylesheet" type="text/css" href="../common-new/css/main.css"/>	
+        <!--SEO / Responsive-->	
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">	
+        <link rel="shortcut icon" href="../common/img/favicon.ico"/>   
+    </head>
+    <body id="register">
+        <!--logo-->
+        <div class="logo-panel">
+            <img class="logo" src="../common/img/logo.png">
+        </div>
+        <!--Form-->
+        <div class="register-panel col-md-5 col-sm-8">
+            <form action="/register/index.php" method="POST">
+                <center> <img src="../common-new/img/profile.png" class="col-md-offset-3 col-sm-offset-2" width="100" height="100"></center><br>
+                <dl class="dl-horizontal">
+                    <dt><strong>First name</strong>:</dt>
+                    <dd><input id="first_name" class="form-control" name="first_name" type="text" value="{{ data.first_name }}" required/></dd>
+                    <div class="divide-10"></div>
+
+                    <dt><strong>Last name</strong>:</dt>
+                    <dd><input id="last_name" class="form-control" name="last_name" type="text" value="{{ data.last_name }}" required/></dd>
+                    <div class="divide-10"></div>
+
+                    <dt><strong>Email</strong>:</dt>
+                    <dd><input type="email" id="mail" class="form-control" name="mail" value="{{ data.mail }}" required/></dd>
+                    <div class="divide-10"></div>
+
+                    <dt><strong>Password</strong>:</dt>
+
+                    <dd><input type="password" id="password" class="form-control" name="mail" required/></dd>
+                    <div class="divide-10"></div>
+
+                    <dt><strong>Country</strong>:</dt>
+                    <dd><input id="country" class="form-control" name="country" type="text" disabled/></dd>
+                    <div class="divide-10"></div>
+
+                    <dt><strong>City</strong>:</dt>
+                    <dd><input id="city" class="form-control" name="city" type="text" disabled/></dd>
+                    <div class="divide-10"></div>
+                    <button class="btn btn-lg btn-success pull-right" type="submit" value="Submit">Register</button>
+                </dl>
+            </form>  
+        </div>
+        <div class="divide-100"></div>
+    <center>
+        <footer>
+            <h4>2015 NASA International App Challenge - All rights reserved</h4>
+            <ul class="list-inline">
+                <li>About Us</li>
+                <li>Facebook</li>
+                <li>Twitter</li>
+                <li>GitHub</li>
+                <li>Terms</li>
+            </ul>
+        </footer>
+    </center>
+        
+        <!-- Inicio parte mapa -->
+        <script type="text/javascript"
+            src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBYuhiS0SauIzg3yLxlsIlF4knSwrIW_cU&sensor=true">
+        </script>
+        <script src="../common/js/jquery.js"></script>
+        <script src="../common/js/bootstrap.js"></script>
+        <script src="../project_js/markerclusterer_compiled.js"></script>
+        <script src="../project_js/easymaps.min.js"></script>
+        <script src="../project_js/register_funcs.js"></script>
+
+        <div id="map_canvas"></div>
+        <!--Fin parte mapa-->
+    </body>
+</html>

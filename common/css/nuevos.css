@@ -1,0 +1,18 @@
+.nav_mobile{
+	background-color:#B3CC57 !important;
+}
+.hidden-xs li {
+	cursor: pointer;
+}
+
+.navbar-default .navbar-nav > li > a{
+	color:#fff !important;
+}
+
+.form_mobile{
+	padding: 0px 7% 0px 7%;
+}
+
+textarea {
+	resize:none;
+}
